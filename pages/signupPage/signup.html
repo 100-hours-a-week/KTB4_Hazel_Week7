@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입</title>
+
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="../../components/input/input.css" />
+  <link rel="stylesheet" href="./signup.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <main class="signup">
+    <form class="signup-form">
+      <h2 class="signup-form__title">회원가입</h2>
+
+      <div class="profile-image-field">
+        <p class="profile-image-field__label">프로필 사진</p>
+        <p id="profileImageHelper" class="profile-image-field__helper"></p>
+
+        <label class="profile-image-field__button" for="profileImage">
+          <span class="profile-image-field__plus">+</span>
+        </label>
+
+        <input
+          id="profileImage"
+          name="profileImage"
+          class="profile-image-field__input"
+          type="file"
+          accept="image/*"
+        />
+      </div>
+
+      <div id="signupFields" class="signup-form__container"></div>
+
+      <button class="signup-form__button" type="submit">회원가입</button>
+      <button class="signup-form__login-button" type="button">로그인하러 가기</button>
+    </form>
+  </main>
+
+  <script type="module" src="./signup.js"></script>
+</body>
+</html>

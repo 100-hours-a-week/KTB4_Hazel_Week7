@@ -1,0 +1,92 @@
+.signup {
+  display: flex;
+  justify-content: center;
+  padding-top: 161px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form__title {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.profile-image-field {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.profile-image-field__label {
+  margin-bottom: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+}
+
+.profile-image-field__helper {
+  min-height: 16px;
+  margin-bottom: 8px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.profile-image-field__button {
+  width: 149px;
+  height: 149px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #c4c4c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profile-image-field__plus {
+  font-size: 32px;
+  font-weight: 300;
+  color: #333;
+}
+
+.profile-image-field__input {
+  display: none;
+}
+
+.signup-form__container {
+  width: 100%;
+  gap: 16px;
+}
+
+.signup-form__button {
+  width: 335px;
+  height: 33px;
+  background-color: #ACA0EB;
+  border: none;
+  border-radius: 4px;
+  margin-top: 38px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.signup-form__button:hover {
+  background-color: #7f6aee;
+}
+
+.signup-form__login-button {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 12px;
+  cursor: pointer;
+}
