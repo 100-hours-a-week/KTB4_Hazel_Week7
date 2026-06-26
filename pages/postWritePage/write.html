@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>게시글 작성</title>
+
+  <link rel="stylesheet" href="../../index.css" />
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="./write.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+<main class="write">
+  <h2 class="title">게시글 작성</h2>
+
+  <form id="writeForm" class="write-form" novalidate>
+    <div class="form-container">
+      <div class="form__item">
+        <label class="form__label" for="title">제목*</label>
+        <input
+          id="title"
+          name="title"
+          class="form__input"
+          type="text"
+          placeholder="제목을 입력해주세요. (최대 26글자)"
+          maxlength="26"
+        />
+        <p id="titleHelper" class="form__helper"></p>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="content">내용*</label>
+        <textarea
+          id="content"
+          name="content"
+          class="form__textarea"
+          placeholder="내용을 입력해주세요."
+        ></textarea>
+        <p id="contentHelper" class="form__helper"></p>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="image">이미지</label>
+
+        <div class="file-field">
+          <label class="file-field__button" for="image">파일 선택</label>
+          <span id="imageFileName" class="file-field__name">파일을 선택해주세요.</span>
+        </div>
+
+        <input
+          id="image"
+          name="image"
+          class="file-field__input"
+          type="file"
+          accept="image/*"
+        />
+      </div>
+    </div>
+
+    <button class="button write__button" type="submit">완료</button>
+  </form>
+</main>
+
+  <script type="module" src="./write.js"></script>
+</body>
+</html>

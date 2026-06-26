@@ -1,0 +1,123 @@
+.write {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.write-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 592px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 51px;
+}
+
+.form__item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form__label {
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 16px;
+}
+
+.form__input {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  padding: 24px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  background-color: transparent;
+}
+
+.form__input::placeholder {
+  color: rgba(131, 132, 134, 1);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.form__textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 279px;
+  border: none;
+  padding: 24px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  background-color: transparent;
+}
+
+.form__textarea::placeholder {
+  color: rgba(131, 132, 134, 1);
+  font-size: 15px;
+  font-weight: 400;
+  font-family: inherit;
+  line-height: 141%;
+}
+
+.form__helper {
+  min-height: 16px;
+  color: #ff0000;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.file-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-field__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 29px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background-color: #d9d9d9;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.file-field__name {
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
+
+.file-field__input {
+  display: none;
+}
+
+.write__button {
+  width: 355px;
+  height: 33px;
+  margin-top: 24px;
+  border-radius: 4px;
+  background-color: #ACA0EB;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFF;
+}
