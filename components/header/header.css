@@ -36,3 +36,29 @@
   font-size: 32px;
   font-weight: 400;
 }
+
+.header__inner--with-profile {
+  justify-content: space-between;
+}
+
+.header__left-space {
+  width: 40px;
+  height: 40px;
+}
+
+.header__profile-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.header__profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #000;
+}
