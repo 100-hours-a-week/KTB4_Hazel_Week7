@@ -50,8 +50,6 @@ document.querySelector("#signupFields").innerHTML = `
   })}
 `;
 
-
-// api 로직 추가하는 부분임
 const signupForm = document.querySelector("#signupForm");
 
 function setHelperText(id, message) {
@@ -167,8 +165,6 @@ function isValidPassword(password) {
   return passwordRegex.test(password);
 }
 
-
-// 프로필 이미지
 const profileImageInput = document.querySelector("#profileImage");
 const profileImageButton = document.querySelector(".profile-image-field__button");
 const profileImageHelper = document.querySelector("#profileImageHelper");
