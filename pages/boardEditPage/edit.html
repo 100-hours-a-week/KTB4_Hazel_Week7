@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>게시글 수정</title>
+
+  <link rel="stylesheet" href="../../index.css" />
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="./edit.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <main class="edit">
+    <h2 class="title">게시글 수정</h2>
+
+    <form id="editForm" class="edit-form" novalidate>
+      <div class="form-container">
+        <div class="form__item">
+          <label class="form__label" for="title">제목*</label>
+          <input
+            id="title"
+            name="title"
+            class="form__input"
+            type="text"
+            maxlength="26"
+          />
+          <p id="titleHelper" class="form__helper"></p>
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="content">내용*</label>
+          <textarea
+            id="content"
+            name="content"
+            class="form__textarea"
+          ></textarea>
+          <p id="contentHelper" class="form__helper"></p>
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="image">이미지</label>
+
+          <div class="file-field">
+            <label class="file-field__button" for="image">파일 선택</label>
+            <span id="imageFileName" class="file-field__name">기존 파일 명</span>
+          </div>
+
+          <input
+            id="image"
+            name="image"
+            class="file-field__input"
+            type="file"
+            accept="image/*"
+          />
+        </div>
+      </div>
+
+      <button class="button edit__button" type="submit">수정하기</button>
+    </form>
+  </main>
+
+  <script type="module" src="./edit.js"></script>
+</body>
+</html>
