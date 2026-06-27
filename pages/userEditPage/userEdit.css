@@ -1,0 +1,137 @@
+.user-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 96px;
+}
+
+.title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.user-edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 355px;
+}
+
+.profile-field {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.profile-field__label {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profile-field__button {
+  position: relative;
+  display: flex;
+  width: 149px;
+  height: 149px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profile-field__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-field__overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 52px;
+  height: 27px;
+  transform: translate(-50%, -50%);
+  border-radius: 14px;
+  background-color: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-field__input {
+  display: none;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form__item {
+  margin-bottom: 16px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form__text {
+  font-size: 14px;
+}
+
+.form__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 33px;
+  padding: 0 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+.form__helper {
+  min-height: 16px;
+  margin-top: 4px;
+  color: #ff0000;
+  font-size: 12px;
+}
+
+.user-edit__button {
+  width: 100%;
+  height: 33px;
+  border-radius: 4px;
+  background-color: #ACA0EB;
+  border: none;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: 700;
+}
+
+.user-edit__withdraw-button {
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.toast {
+  display: none;
+  margin-top: 48px;
+  padding: 16px 24px;
+  border-radius: 24px;
+  background-color: #aca0eb;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.toast.is-active {
+  display: block;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원정보수정</title>
+
+  <link rel="stylesheet" href="../../index.css" />
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="./userEdit.css" />
+  <link rel="stylesheet" href="../../components/input/input.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <main class="user-edit">
+    <h2 class="title">회원정보수정</h2>
+
+    <form id="userEditForm" class="user-edit-form" novalidate>
+      <div class="profile-field">
+        <p class="profile-field__label">프로필 사진*</p>
+
+        <label class="profile-field__button" for="profileImage">
+          <img id="profilePreview" class="profile-field__image" alt="프로필 이미지" />
+          <span class="profile-field__overlay">변경</span>
+        </label>
+
+        <input
+          id="profileImage"
+          name="profileImage"
+          class="profile-field__input"
+          type="file"
+          accept="image/*"
+        />
+      </div>
+
+      <div class="form-container">
+        <div class="form__item">
+          <label class="form__label">이메일</label>
+          <p id="emailText" class="form__text"></p>
+        </div>
+
+        <div id="nicknameField"></div>
+      </div>
+
+      <button class="user-edit__button" type="submit">수정하기</button>
+      <button id="withdrawButton" class="user-edit__withdraw-button" type="button">회원 탈퇴</button>
+    </form>
+
+    <div id="toast" class="toast">수정완료</div>
+  </main>
+
+  <script type="module" src="./userEdit.js"></script>
+</body>
+</html>
