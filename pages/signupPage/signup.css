@@ -43,6 +43,8 @@
   margin: 0 auto;
   border-radius: 50%;
   background-color: #c4c4c4;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
