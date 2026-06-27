@@ -18,6 +18,14 @@
   justify-content: space-between;
 }
 
+.header__inner--with-profile {
+  justify-content: space-between;
+}
+
+.header__inner--with-back-profile {
+  justify-content: space-between;
+}
+
 .header__back-button {
   width: 40px;
   height: 40px;
@@ -32,18 +40,14 @@
   height: 40px;
 }
 
-.header__title {
-  font-size: 32px;
-  font-weight: 400;
-}
-
-.header__inner--with-profile {
-  justify-content: space-between;
-}
-
 .header__left-space {
   width: 40px;
   height: 40px;
+}
+
+.header__title {
+  font-size: 32px;
+  font-weight: 400;
 }
 
 .header__profile-button {
@@ -61,4 +65,37 @@
   height: 36px;
   border-radius: 50%;
   background-color: #000;
+}
+
+.header__profile-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.header__dropdown {
+  display: none;
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 115px;
+  z-index: 10;
+  border: none;
+}
+
+.header__dropdown-item {
+  border: none;
+  background-color: #d9d9d9;
+  padding: 16px 12px;
+  cursor: pointer;
+}
+
+
+.header__dropdown-item:hover {
+  background-color: #c4c4c4;
+}
+
+.header__dropdown.is-active {
+  display: flex;
+  flex-direction: column;
 }
