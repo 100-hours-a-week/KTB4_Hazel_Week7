@@ -84,9 +84,16 @@ loginForm.addEventListener("submit", async (event) => {
       password,
     });
 
-    localStorage.setItem("accessToken", result.accessToken);
-    localStorage.setItem("tokenType", result.tokenType);
-    localStorage.setItem("userId", result.userId);
+    const loginData = result.data;
+
+    console.log("로그인 응답 전체:", result);
+    console.log("로그인 응답 data:", result.data);
+
+
+
+    localStorage.setItem("accessToken", loginData.accessToken);
+    localStorage.setItem("tokenType", loginData.tokenType);
+    localStorage.setItem("userId", loginData.userId);
 
     location.href = "../boardPage/board.html";
   } catch (error) {
