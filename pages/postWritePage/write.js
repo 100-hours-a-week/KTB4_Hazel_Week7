@@ -1,19 +1,38 @@
 import { header } from "../../components/header/header.js";
+import { createBoardRequest } from "../../api/boardApi.js";
 
 document.querySelector("#header").innerHTML = header({
-  type: "isBeforeButton",
+  type: "withBackAndProfile",
 });
 
 document.querySelector(".header__back-button")?.addEventListener("click", () => {
   history.back();
 });
 
+document.querySelector(".header__profile-button")?.addEventListener("click", () => {
+  document.querySelector(".header__dropdown")?.classList.toggle("is-active");
+});
+
 const writeForm = document.querySelector("#writeForm");
+const titleInput = document.querySelector("#title");
+const contentTextarea = document.querySelector("#content");
+const imageInput = document.querySelector("#image");
+const imageFileName = document.querySelector("#imageFileName");
+
+let selectedImages = [];
 
 function setHelperText(id, message) {
   const helper = document.querySelector(`#${id}Helper`);
   helper.textContent = message ? `* ${message}` : "";
 }
+
+imageInput.addEventListener("change", () => {
+  selectedImages = Array.from(imageInput.files);
+
+  imageFileName.textContent = selectedImages.length
+    ? `${selectedImages.length}개의 이미지 선택됨`
+    : "파일을 선택해주세요.";
+});
 
 writeForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -21,29 +40,40 @@ writeForm.addEventListener("submit", async (event) => {
   setHelperText("title", "");
   setHelperText("content", "");
 
-  const formData = new FormData(writeForm);
-
-  const title = formData.get("title").trim();
-  const content = formData.get("content").trim();
+  const title = titleInput.value.trim();
+  const text = contentTextarea.value.trim();
 
   if (!title) {
     setHelperText("title", "제목을 입력해주세요.");
     return;
   }
 
-  if (!content) {
+  if (!text) {
     setHelperText("content", "내용을 입력해주세요.");
     return;
   }
 
-  console.log("게시글 작성 데이터:", {
+  const createPayload = {
     title,
-    content,
-    image: formData.get("image"),
-  });
+    text,
+    images: selectedImages.map((file) => file.name),
+  };
 
-  // 나중에 API 붙이면 여기서 fetch 사용
-  // await createPost(formData);
+  console.log("게시글 작성 요청 payload:", createPayload);
 
-  location.href = "../boardPage/board.html";
+  try {
+    const response = await createBoardRequest(createPayload);
+
+    const boardId = response?.data?.id;
+
+    if (boardId) {
+      location.href = `../boardDetailPage/detail.html?id=${boardId}`;
+      return;
+    }
+
+    location.href = "../boardPage/board.html";
+  } catch (error) {
+    console.error("게시글 작성 실패:", error);
+    setHelperText("content", error.message || "게시글 작성에 실패했습니다.");
+  }
 });

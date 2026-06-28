@@ -61,6 +61,8 @@
   border-top: 1px solid rgba(0, 0, 0, 0.16);
   border-bottom: 1px solid rgba(0, 0, 0, 0.16);
   background-color: transparent;
+  font-family: inherit;
+  resize: none;
 }
 
 .form__textarea::placeholder {
@@ -109,6 +111,36 @@
   display: none;
 }
 
+.image-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.image-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.image-preview__image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  background-color: #d9d9d9;
+}
+
+.image-preview__delete-button {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #aca0eb;
+  border-radius: 8px;
+  background-color: transparent;
+  font-size: 13px;
+  cursor: pointer;
+}
+
 .write__button {
   width: 355px;
   height: 33px;
@@ -116,8 +148,8 @@
   border-radius: 4px;
   background-color: #ACA0EB;
   border: none;
-
   font-size: 14px;
   font-weight: 700;
   color: #FFF;
+  cursor: pointer;
 }
