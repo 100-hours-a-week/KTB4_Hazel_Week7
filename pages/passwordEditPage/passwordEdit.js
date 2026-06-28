@@ -1,94 +1,112 @@
-import { header } from "../../components/header/header.js";
+import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { input } from "../../components/input/input.js";
+import { changePasswordRequest } from "../../api/userApi.js";
 
 document.querySelector("#header").innerHTML = header({
   type: "withProfile",
 });
 
-document.querySelector(".header__profile-button")?.addEventListener("click", () => {
-  document.querySelector(".header__dropdown")?.classList.toggle("is-active");
-});
-
-document.querySelector(".header__menu-profile-edit")?.addEventListener("click", () => {
-  location.href = "../userEditPage/userEdit.html";
-});
-
-document.querySelector(".header__menu-password-edit")?.addEventListener("click", () => {
-  location.href = "./passwordEdit.html";
-});
+bindHeaderEvents();
 
 document.querySelector("#passwordEditFields").innerHTML = `
   ${input({
-    id: "password",
-    name: "password",
-    label: "비밀번호",
+    id: "currentPassword",
+    name: "currentPassword",
+    label: "현재 비밀번호",
     type: "password",
-    placeholder: "비밀번호를 입력하세요",
+    placeholder: "현재 비밀번호를 입력하세요",
     autocomplete: "current-password",
   })}
 
   ${input({
-    id: "passwordConfirm",
-    name: "passwordConfirm",
-    label: "비밀번호 확인",
+    id: "newPassword",
+    name: "newPassword",
+    label: "새 비밀번호",
     type: "password",
-    placeholder: "비밀번호를 한번 더 입력하세요",
+    placeholder: "새 비밀번호를 입력하세요",
+    autocomplete: "new-password",
+  })}
+
+  ${input({
+    id: "newPasswordConfirm",
+    name: "newPasswordConfirm",
+    label: "새 비밀번호 확인",
+    type: "password",
+    placeholder: "새 비밀번호를 한번 더 입력하세요",
     autocomplete: "new-password",
   })}
 `;
 
 const passwordEditForm = document.querySelector("#passwordEditForm");
-const passwordInput = document.querySelector("#password");
-const passwordConfirmInput = document.querySelector("#passwordConfirm");
 
 function setHelperText(id, message) {
   const helper = document.querySelector(`#${id}Helper`);
   helper.textContent = message ? `* ${message}` : "";
 }
 
-async function changePassword(data) {
-  // 나중에 API 연결 시 교체
-  // const response = await fetch("https://api.example.com/users/me/password", {
-  //   method: "PATCH",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //   },
-  //   body: JSON.stringify(data),
-  // });
-  // if (!response.ok) throw new Error("비밀번호 수정 실패");
+function isValidPassword(password) {
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,20}$/;
 
-  console.log("비밀번호 수정 요청:", data);
+  return passwordRegex.test(password);
 }
 
 passwordEditForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  setHelperText("password", "");
-  setHelperText("passwordConfirm", "");
+  setHelperText("currentPassword", "");
+  setHelperText("newPassword", "");
+  setHelperText("newPasswordConfirm", "");
 
-  const password = passwordInput.value.trim();
-  const passwordConfirm = passwordConfirmInput.value.trim();
+  const formData = new FormData(passwordEditForm);
+  const data = Object.fromEntries(formData.entries());
 
-  if (!password) {
-    setHelperText("password", "비밀번호를 입력해주세요.");
+  const currentPassword = data.currentPassword.trim();
+  const newPassword = data.newPassword.trim();
+  const newPasswordConfirm = data.newPasswordConfirm.trim();
+
+  if (!currentPassword) {
+    setHelperText("currentPassword", "현재 비밀번호를 입력해주세요.");
     return;
   }
 
-  if (!passwordConfirm) {
-    setHelperText("passwordConfirm", "비밀번호를 한번 더 입력해주세요.");
+  if (!newPassword) {
+    setHelperText("newPassword", "새 비밀번호를 입력해주세요.");
     return;
   }
 
-  if (password !== passwordConfirm) {
-    setHelperText("passwordConfirm", "비밀번호가 다릅니다.");
+  if (!isValidPassword(newPassword)) {
+    setHelperText(
+      "newPassword",
+      "비밀번호는 8자 이상 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다."
+    );
     return;
   }
 
-  await changePassword({
-    password,
-    passwordConfirm,
-  });
+  if (!newPasswordConfirm) {
+    setHelperText("newPasswordConfirm", "새 비밀번호를 한번 더 입력해주세요.");
+    return;
+  }
 
-  alert("비밀번호가 수정되었습니다.");
+  if (newPassword !== newPasswordConfirm) {
+    setHelperText("newPasswordConfirm", "비밀번호가 다릅니다.");
+    return;
+  }
+
+  const updatePayload = {
+    currentPassword,
+    newPassword,
+  };
+
+  console.log("비밀번호 수정 요청 payload:", updatePayload);
+
+  try {
+    await changePasswordRequest(updatePayload);
+
+    alert("비밀번호가 수정되었습니다.");
+    location.href = "../boardPage/board.html";
+  } catch (error) {
+    console.error("비밀번호 수정 실패:", error);
+    setHelperText("currentPassword", error.message || "비밀번호 수정에 실패했습니다.");
+  }
 });

@@ -13,3 +13,9 @@ export function signupRequest(data) {
     body: JSON.stringify(data),
   });
 }
+
+export function logoutRequest() {
+  return request("/users/logout", {
+    method: "POST",
+  });
+}
