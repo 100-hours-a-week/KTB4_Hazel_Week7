@@ -65,3 +65,37 @@ export function header({ type = "default" } = {}) {
     </header>
   `;
 }
+
+export function bindHeaderEvents() {
+  const profileButton = document.querySelector(".header__profile-button");
+  const dropdown = document.querySelector(".header__dropdown");
+
+  profileButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    dropdown?.classList.toggle("is-active");
+  });
+
+  dropdown?.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener("click", () => {
+    dropdown?.classList.remove("is-active");
+  });
+
+  document.querySelector(".header__menu-profile-edit")?.addEventListener("click", () => {
+    location.href = "../userEditPage/userEdit.html";
+  });
+
+  document.querySelector(".header__menu-password-edit")?.addEventListener("click", () => {
+    location.href = "../passwordEditPage/passwordEdit.html";
+  });
+
+  document.querySelector(".header__menu-logout")?.addEventListener("click", () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("tokenType");
+    localStorage.removeItem("userId");
+
+    location.href = "../loginPage/login.html";
+  });
+}
