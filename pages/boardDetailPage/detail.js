@@ -90,27 +90,33 @@ function createImageList(images = []) {
   `;
 }
 
-function createCommentItem(comment) {
+function createCommentItem({
+  id, writer, createdAt, content, isOwner
+}) {
   return `
-    <div class="comment-item" data-comment-id="${comment.id}">
+    <div class="comment-item" data-comment-id="${id}">
       <div class="profile__image"></div>
 
       <div class="comment-item__content">
         <div class="comment-item__meta">
-          <span class="comment-item__author">${comment.writer}</span>
-          <span class="comment-item__date">${comment.createdAt}</span>
+          <span class="comment-item__author">${writer}</span>
+          <span class="comment-item__date">${createdAt}</span>
 
           <div class="comment-item__button-container">
-            <button class="detail__button comment-edit-button" type="button" data-comment-id="${comment.id}">
-              수정
-            </button>
-            <button class="detail__button comment-delete-button" type="button" data-comment-id="${comment.id}">
-              삭제
-            </button>
+          ${
+            isOwner ? `
+              <button class="detail__button comment-edit-button" type="button" data-comment-id="${id}">
+                수정
+              </button>
+              <button class="detail__button comment-delete-button" type="button" data-comment-id="${id}">
+                삭제
+              </button>
+            ` : ``
+          }
           </div>
         </div>
 
-        <p class="comment-item__text">${comment.content}</p>
+        <p class="comment-item__text">${content}</p>
       </div>
     </div>
   `;
@@ -126,6 +132,7 @@ function renderPostDetail({
   likeCount,
   views,
   comments,
+  isOwner
 }) {
   postDetail.innerHTML = `
     <h2 class="detail__title">${title}</h2>
@@ -140,10 +147,15 @@ function renderPostDetail({
         <span class="detail__date">${createdAt}</span>
       </div>
 
-      <div class="detail__button-container">
-        <button id="editButton" class="detail__button" type="button">수정</button>
-        <button id="deleteButton" class="detail__button" type="button">삭제</button>
-      </div>
+      ${
+        isOwner ? `
+          <div class="detail__button-container">
+            <button id="editButton" class="detail__button" type="button">수정</button>
+            <button id="deleteButton" class="detail__button" type="button">삭제</button>
+          </div>
+        `: ``
+      }
+
     </div>
 
     <div class="line"></div>
