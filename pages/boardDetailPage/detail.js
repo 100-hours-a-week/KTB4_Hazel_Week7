@@ -2,6 +2,8 @@ import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { getBoardDetailRequest, deleteBoardRequest } from "../../api/boardApi.js";
 import { getCommentsRequest, createCommentRequest, updateCommentRequest, deleteCommentRequest } from "../../api/commentApi.js";
 import { modal, openModal, closeModal } from "../../components/modal/modal.js";
+import { formatDate } from "../../utils/formatDate.js"
+
 
 document.querySelector("#header").innerHTML = header({
   type: "withBackAndProfile",
@@ -93,6 +95,8 @@ function createImageList(images = []) {
 function createCommentItem({
   id, writer, createdAt, content, isOwner
 }) {
+  const formattedCreatedAt = formatDate(createdAt);
+
   return `
     <div class="comment-item" data-comment-id="${id}">
       <div class="profile__image"></div>
@@ -100,7 +104,7 @@ function createCommentItem({
       <div class="comment-item__content">
         <div class="comment-item__meta">
           <span class="comment-item__author">${writer}</span>
-          <span class="comment-item__date">${createdAt}</span>
+          <span class="comment-item__date">${formattedCreatedAt}</span>
 
           <div class="comment-item__button-container">
           ${
@@ -134,6 +138,8 @@ function renderPostDetail({
   comments,
   isOwner
 }) {
+  const formattedCreatedAt = formatDate(createdAt);
+
   postDetail.innerHTML = `
     <h2 class="detail__title">${title}</h2>
 
@@ -144,7 +150,7 @@ function renderPostDetail({
           <div class="profile__name">${writer}</div>
         </div>
 
-        <span class="detail__date">${createdAt}</span>
+        <span class="detail__date">${formattedCreatedAt}</span>
       </div>
 
       ${
