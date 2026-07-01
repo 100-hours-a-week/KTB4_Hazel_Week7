@@ -1,5 +1,6 @@
 import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { getBoardsRequest } from "../../api/boardApi.js";
+import { formatDate } from "../../utils/formatDate.js"
 
 document.querySelector("#header").innerHTML = header({
   type: "withProfile",
@@ -29,6 +30,8 @@ function createPostItem({
   createdAt,
   writer,
 }) {
+  const changeFormatDate = formatDate(createdAt);
+
   return `
     <article class="item" data-post-id="${id}">
       <span class="item__title">${title}</span>
@@ -51,7 +54,7 @@ function createPostItem({
           </div>
         </div>
 
-        <div class="count__text">${createdAt}</div>
+        <div class="count__text">${changeFormatDate}</div>
       </div>
 
       <div class="line"></div>
