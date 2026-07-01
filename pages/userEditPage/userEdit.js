@@ -44,11 +44,14 @@ async function initUserEditPage() {
   }
 }
 
+let selectedProfileImageFile = null;
+
 profileImageInput.addEventListener("change", () => {
   const file = profileImageInput.files[0];
 
   if (!file) return;
 
+  selectedProfileImageFile = file
   profilePreview.src = URL.createObjectURL(file);
 });
 
@@ -72,15 +75,15 @@ userEditForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const updatePayload = {
-    nickname,
-    profileImage: profilePreview.getAttribute("src") || "",
-  };
+  const formData = new FormData();
+  formData.append("nickname", nickname);
 
-  console.log("회원정보 수정 요청 payload:", updatePayload);
+  if (selectedProfileImageFile) {
+    formData.append("profileImage", selectedProfileImageFile);
+  }
 
   try {
-    await updateMyInfoRequest(updatePayload);
+    await updateMyInfoRequest(formData);
     showToast();
   } catch (error) {
     console.error("회원정보 수정 실패:", error);

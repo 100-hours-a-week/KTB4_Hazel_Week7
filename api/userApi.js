@@ -9,7 +9,7 @@ export function getMyInfoRequest() {
 export function updateMyInfoRequest(data) {
   return request("/users/me", {
     method: "PATCH",
-    body: JSON.stringify(data),
+    body: data
   })
 }
 
