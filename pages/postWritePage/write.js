@@ -1,16 +1,8 @@
-import { header } from "../../components/header/header.js";
+import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { createBoardRequest } from "../../api/boardApi.js";
 
 document.querySelector("#header").innerHTML = header({
   type: "withBackAndProfile",
-});
-
-document.querySelector(".header__back-button")?.addEventListener("click", () => {
-  history.back();
-});
-
-document.querySelector(".header__profile-button")?.addEventListener("click", () => {
-  document.querySelector(".header__dropdown")?.classList.toggle("is-active");
 });
 
 const writeForm = document.querySelector("#writeForm");
@@ -77,3 +69,5 @@ writeForm.addEventListener("submit", async (event) => {
     setHelperText("content", error.message || "게시글 작성에 실패했습니다.");
   }
 });
+
+bindHeaderEvents();

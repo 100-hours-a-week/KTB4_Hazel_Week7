@@ -8,10 +8,6 @@ document.querySelector("#header").innerHTML = header({
   type: "withBackAndProfile",
 });
 
-document.querySelector(".header__back-button")?.addEventListener("click", () => {
-  history.back();
-});
-
 const params = new URLSearchParams(location.search);
 const postId = Number(params.get("id"));
 
