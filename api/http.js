@@ -12,6 +12,15 @@ export async function request(path, options = {}) {
     },
   });
 
+
+  if (response.status === 401) {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("tokenType");
+    localStorage.removeItem("userId");
+    location.href = "../loginPage/login.html";
+    return;
+  }
+
   if (!response.ok) {
     const error = await response.json().catch(() => null);
     throw new Error(error?.message || "API 요청 실패");
@@ -20,6 +29,7 @@ export async function request(path, options = {}) {
   if (response.status === 204) {
     return null;
   }
+
 
   return response.json();
 }
