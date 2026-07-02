@@ -98,14 +98,6 @@ export function bindHeaderEvents() {
     location.href = "../passwordEditPage/passwordEdit.html";
   });
 
-  document.querySelector(".header__menu-logout")?.addEventListener("click", () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("tokenType");
-    localStorage.removeItem("userId");
-
-    location.href = "../loginPage/login.html";
-  });
-
   document.querySelector(".header__menu-logout")?.addEventListener("click", async () => {
   try {
     await logoutRequest();
