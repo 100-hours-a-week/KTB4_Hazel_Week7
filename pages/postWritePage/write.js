@@ -19,11 +19,17 @@ function setHelperText(id, message) {
 }
 
 imageInput.addEventListener("change", () => {
-  selectedImages = Array.from(imageInput.files);
+  const newSelectedImages = Array.from(imageInput.files);
+  selectedImages = [
+    ...selectedImages,
+    ...newSelectedImages,
+  ]
 
   imageFileName.textContent = selectedImages.length
     ? `${selectedImages.length}개의 이미지 선택됨`
     : "파일을 선택해주세요.";
+
+  imageInput.value = "";
 });
 
 writeForm.addEventListener("submit", async (event) => {
@@ -45,16 +51,16 @@ writeForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const createPayload = {
-    title,
-    text,
-    images: selectedImages.map((file) => file.name),
-  };
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("text", text);
 
-  console.log("게시글 작성 요청 payload:", createPayload);
+  selectedImages.forEach((file) => {
+    formData.append("images", file);
+  })
 
   try {
-    const response = await createBoardRequest(createPayload);
+    const response = await createBoardRequest(formData);
 
     const boardId = response?.data?.id;
 

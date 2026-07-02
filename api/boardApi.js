@@ -22,7 +22,7 @@ export function updateBoardRequest(boardId, data) {
 export function createBoardRequest(data) {
   return request("/boards", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: data,
   });
 }
 
