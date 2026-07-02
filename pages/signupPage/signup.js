@@ -1,5 +1,6 @@
 import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { input } from "../../components/input/input.js";
+import { signupRequest } from "../../api/authApi.js";
 
 document.querySelector("#header").innerHTML = header({
   type: "withBack",
@@ -64,23 +65,6 @@ function clearHelperTexts() {
   setHelperText("nickname", "");
 }
 
-async function signupRequest(data) {
-  const response = await fetch("http://localhost:8080/users/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => null);
-    throw new Error(error?.message || "회원가입에 실패했습니다.");
-  }
-
-  return response.json();
-}
-
 signupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -138,13 +122,15 @@ signupForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  const signupFormData = new FormData();
+
+  signupFormData.append("email", email);
+  signupFormData.append("password", password);
+  signupFormData.append("nickname", nickname);
+  signupFormData.append("profileImage", profileImage);
+
   try {
-    await signupRequest({
-      email,
-      password,
-      nickname,
-      profileImage: "",
-    });
+    const response = await signupRequest(signupFormData);
 
     alert("회원가입이 완료되었습니다.");
     location.href = "../loginPage/login.html";

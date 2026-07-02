@@ -10,7 +10,7 @@ export function loginRequest(data) {
 export function signupRequest(data) {
   return request("/users/signup", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: data,
   });
 }
 
