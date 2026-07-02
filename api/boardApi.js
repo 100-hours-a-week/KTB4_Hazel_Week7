@@ -15,7 +15,7 @@ export function getBoardDetailRequest(boardId) {
 export function updateBoardRequest(boardId, data) {
   return request(`/boards/${boardId}`, {
     method: "PATCH",
-    body: JSON.stringify(data),
+    body: data,
   });
 }
 

@@ -32,7 +32,7 @@ function renderImagePreviewList() {
       .map(
         (imageUrl, index) => `
           <div class="image-preview">
-            <img class="image-preview__image" src="${imageUrl}" alt="기존 이미지 ${index + 1}" />
+            <span class="image-preview__text">${imageUrl}</span>
             <button class="image-preview__delete-button" type="button" data-type="current" data-index="${index}">
               삭제
             </button>
@@ -45,7 +45,7 @@ function renderImagePreviewList() {
       .map(
         (file, index) => `
           <div class="image-preview">
-            <img class="image-preview__image" src="${URL.createObjectURL(file)}" alt="새 이미지 ${index + 1}" />
+            <span class="image-preview__text">${file.name}</span>
             <button class="image-preview__delete-button" type="button" data-type="new" data-index="${index}">
               삭제
             </button>
@@ -93,11 +93,14 @@ async function initEditPage() {
 }
 
 imageInput.addEventListener("change", () => {
-  newImages = [...newImages, ...Array.from(imageInput.files)];
+  const selectedFiles = Array.from(imageInput.files);
 
-  imageFileName.textContent = newImages.length
-    ? `${newImages.length}개의 새 이미지 선택됨`
-    : "파일을 선택해주세요.";
+  if (!selectedFiles.length) return;
+
+  currentImages = [];
+  newImages = [...newImages, ...selectedFiles];
+
+  imageFileName.textContent = `${newImages.length}개의 새 이미지 선택됨`;
 
   renderImagePreviewList();
 
@@ -123,11 +126,22 @@ editForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  await updateBoardRequest(postId, {
-    title,
-    text,
-    images: currentImages,
-  });
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("text", text);
+
+
+  if (newImages.length > 0) {
+    newImages.forEach((image) => {
+      formData.append("images", image);
+    });
+  } else {
+    currentImages.forEach((image) => {
+      formData.append("images", image);
+    });
+  }
+
+  await updateBoardRequest(postId, formData)
 
   location.href = `../boardDetailPage/detail.html?id=${postId}`;
 });
