@@ -9,10 +9,6 @@ document.querySelector("#header").innerHTML = header({
   type: "withBackAndProfile",
 });
 
-document.querySelector(".header__back-button")?.addEventListener("click", () => {
-  history.back();
-});
-
 document.querySelector("#modalRoot").innerHTML = modal({
   id: "deleteCommentModal",
   title: "댓글을 삭제하시겠습니까?",
@@ -51,7 +47,6 @@ document
       const post = await getPostDetail(boardId);
       renderPostDetail(post);
     } catch (error) {
-      console.error("댓글 삭제 실패:", error);
       alert(error.message || "댓글 삭제에 실패했습니다.");
     }
   });
@@ -60,8 +55,6 @@ let selectedDeleteComment = null;
 
 async function getPostDetail(postId) {
   const response = await getBoardDetailRequest(postId);
-
-  console.log("게시글 상세 API 응답:", response);
 
   return response.data;
 }

@@ -6,8 +6,6 @@ document.querySelector("#header").innerHTML = header({
   type: "withProfile",
 });
 
-bindHeaderEvents();
-
 document.querySelector("#passwordEditFields").innerHTML = `
   ${input({
     id: "currentPassword",
@@ -110,3 +108,5 @@ passwordEditForm.addEventListener("submit", async (event) => {
     setHelperText("currentPassword", error.message || "비밀번호 수정에 실패했습니다.");
   }
 });
+
+bindHeaderEvents();

@@ -24,6 +24,18 @@ export function header({ type = "default" } = {}) {
     `;
   }
 
+  if (type === "withBack") {
+    return `
+      <header class="header">
+        <div class="header__inner header__inner--with-back">
+          <button class="header__back-button" type="button" aria-label="뒤로가기">&lt;</button>
+          <h1 class="header__title">아무 말 대잔치</h1>
+          <div class="header__right-space"></div>
+        </div>
+      </header>
+    `;
+  }
+
   if (type === "withBackAndProfile") {
     return `
       <header class="header">
@@ -60,28 +72,33 @@ export function bindHeaderEvents() {
   const profileButton = document.querySelector(".header__profile-button");
   const dropdown = document.querySelector(".header__dropdown");
 
-  profileButton.addEventListener("click", (event) => {
+  profileButton?.addEventListener("click", (event) => {
     event.stopPropagation();
-    dropdown.classList.toggle("is-active");
+    dropdown?.classList.toggle("is-active");
   });
 
-  dropdown.addEventListener("click", (event) => {
+  dropdown?.addEventListener("click", (event) => {
     event.stopPropagation();
+  });
+
+
+  document.querySelector(".header__back-button")?.addEventListener("click", () => {
+    history?.back();
   });
 
   document.addEventListener("click", () => {
-    dropdown.classList.remove("is-active");
+    dropdown?.classList.remove("is-active");
   });
 
-  document.querySelector(".header__menu-profile-edit").addEventListener("click", () => {
+  document.querySelector(".header__menu-profile-edit")?.addEventListener("click", () => {
     location.href = "../userEditPage/userEdit.html";
   });
 
-  document.querySelector(".header__menu-password-edit").addEventListener("click", () => {
+  document.querySelector(".header__menu-password-edit")?.addEventListener("click", () => {
     location.href = "../passwordEditPage/passwordEdit.html";
   });
 
-  document.querySelector(".header__menu-logout").addEventListener("click", () => {
+  document.querySelector(".header__menu-logout")?.addEventListener("click", () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("tokenType");
     localStorage.removeItem("userId");
@@ -89,7 +106,7 @@ export function bindHeaderEvents() {
     location.href = "../loginPage/login.html";
   });
 
-  document.querySelector(".header__menu-logout").addEventListener("click", async () => {
+  document.querySelector(".header__menu-logout")?.addEventListener("click", async () => {
   try {
     await logoutRequest();
   } catch (error) {

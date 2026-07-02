@@ -1,12 +1,12 @@
-import { header } from "../../components/header/header.js";
+import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { input } from "../../components/input/input.js";
 
 document.querySelector("#header").innerHTML = header({
-  type: "isBeforeButton",
+  type: "withBack",
 });
 
-document.querySelector(".header__back-button")?.addEventListener("click", () => {
-  history.back();
+document.querySelector("#gotoSignup").addEventListener("click", () => {
+  location.href = "../loginPage/login.html";
 });
 
 document.querySelector("#signupFields").innerHTML = `
@@ -110,14 +110,13 @@ signupForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  //다만들고 조건 풀기
-  // if (!isValidPassword(password)) {
-  //   setHelperText(
-  //     "password",
-  //     "비밀번호는 8자 이상 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다."
-  //   );
-  //   return;
-  // }
+  if (!isValidPassword(password)) {
+    setHelperText(
+      "password",
+      "비밀번호는 8자 이상 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다."
+    );
+    return;
+  }
 
   if (!passwordConfirm) {
     setHelperText("passwordConfirm", "비밀번호를 한번 더 입력해주세요.");
@@ -191,3 +190,5 @@ profileImageInput.addEventListener("change", () => {
   profileImageButton.style.backgroundSize = "cover";
   profileImageButton.style.backgroundPosition = "center";
 });
+
+bindHeaderEvents();
