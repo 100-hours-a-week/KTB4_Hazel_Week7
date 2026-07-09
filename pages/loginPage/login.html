@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로그인</title>
 
+  <link rel="stylesheet" href="../../index.css" />
   <link rel="stylesheet" href="../../components/header/header.css" />
   <link rel="stylesheet" href="../../components/input/input.css" />
   <link rel="stylesheet" href="./login.css"/>
-  <link rel="stylesheet" href="../../index.css" />
 </head>
 <body>
   <div id="header"></div>
-  <main class="login">
-    <form id="loginForm" class="login-form" novalidate>
-      <h2 class="login-form__title">로그인</h2>
 
-      <div id="loginFields" class="login-form__container">
-      </div>
+  <main class="auth">
+    <form id="loginForm" class="auth-form" novalidate>
+      <h1 class="auth-form__title">로그인</h1>
+      <p class="auth-form__subtitle">다짐을 이어가볼까요?</p>
 
-      <button class="login-form__button" type="submit">로그인</button>
-      <button id="signupButton" class="login-form__signup-button" type="button">회원가입</button>
+      <div id="loginFields" class="auth-form__fields"></div>
+
+      <button class="auth-form__submit" type="submit">로그인</button>
+      <button id="signupButton" class="auth-form__switch" type="button">
+        아직 계정이 없으신가요? <span>회원가입</span>
+      </button>
     </form>
   </main>
+
   <script type="module" src="./login.js"></script>
 </body>
 </html>

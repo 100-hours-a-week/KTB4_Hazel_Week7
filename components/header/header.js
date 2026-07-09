@@ -6,7 +6,7 @@ export function header({ type = "default" } = {}) {
       <header class="header">
         <div class="header__inner header__inner--with-profile">
           <div class="header__left-space"></div>
-          <h1 class="header__title">아무 말 대잔치</h1>
+          <h1 class="header__title">작심삼일</h1>
 
           <div class="header__profile-wrapper">
             <button class="header__profile-button" type="button" aria-label="프로필 메뉴">
@@ -29,7 +29,7 @@ export function header({ type = "default" } = {}) {
       <header class="header">
         <div class="header__inner header__inner--with-back">
           <button class="header__back-button" type="button" aria-label="뒤로가기">&lt;</button>
-          <h1 class="header__title">아무 말 대잔치</h1>
+          <h1 class="header__title">작심삼일</h1>
           <div class="header__right-space"></div>
         </div>
       </header>
@@ -41,7 +41,7 @@ export function header({ type = "default" } = {}) {
       <header class="header">
         <div class="header__inner header__inner--with-back-profile">
           <button class="header__back-button" type="button" aria-label="뒤로가기">&lt;</button>
-          <h1 class="header__title">아무 말 대잔치</h1>
+          <h1 class="header__title">작심삼일</h1>
 
           <div class="header__profile-wrapper">
             <button class="header__profile-button" type="button" aria-label="프로필 메뉴">
@@ -62,7 +62,7 @@ export function header({ type = "default" } = {}) {
   return `
     <header class="header">
       <div class="header__inner">
-        <h1 class="header__title">아무 말 대잔치</h1>
+        <h1 class="header__title">작심삼일</h1>
       </div>
     </header>
   `;
