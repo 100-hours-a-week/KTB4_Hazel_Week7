@@ -119,6 +119,10 @@
   min-height: 320px;
 }
 
+.detail__image-list + .detail__content {
+  min-height: 0;
+}
+
 .detail__count-container {
   display: flex;
   justify-content: center;

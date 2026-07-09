@@ -1,4 +1,6 @@
 import { logoutRequest } from "../../api/authApi.js";
+import { getMyInfoRequest } from "../../api/userApi.js";
+import { resolveImageUrl } from "../../utils/resolveImageUrl.js";
 
 export function header({ type = "default" } = {}) {
   if (type === "withProfile") {
@@ -10,7 +12,7 @@ export function header({ type = "default" } = {}) {
 
           <div class="header__profile-wrapper">
             <button class="header__profile-button" type="button" aria-label="프로필 메뉴">
-              <div class="header__profile-image"></div>
+              <img class="header__profile-image" alt="" />
             </button>
 
             <div class="header__dropdown">
@@ -45,7 +47,7 @@ export function header({ type = "default" } = {}) {
 
           <div class="header__profile-wrapper">
             <button class="header__profile-button" type="button" aria-label="프로필 메뉴">
-              <div class="header__profile-image"></div>
+              <img class="header__profile-image" alt="" />
             </button>
 
             <div class="header__dropdown">
@@ -68,9 +70,33 @@ export function header({ type = "default" } = {}) {
   `;
 }
 
+async function loadHeaderProfileImage() {
+  const profileImage = document.querySelector(".header__profile-image");
+
+  if (!profileImage || !localStorage.getItem("accessToken")) return;
+
+  try {
+    const response = await getMyInfoRequest();
+    const user = response?.data;
+
+    if (!user?.profileImage) return;
+
+    const resolvedUrl = resolveImageUrl(user.profileImage);
+
+    profileImage.src = resolvedUrl;
+    profileImage.onerror = () => {
+      profileImage.removeAttribute("src");
+    };
+  } catch (error) {
+    console.error("헤더 프로필 이미지 조회 실패:", error);
+  }
+}
+
 export function bindHeaderEvents() {
   const profileButton = document.querySelector(".header__profile-button");
   const dropdown = document.querySelector(".header__dropdown");
+
+  loadHeaderProfileImage();
 
   profileButton?.addEventListener("click", (event) => {
     event.stopPropagation();

@@ -1,6 +1,7 @@
 import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { input } from "../../components/input/input.js";
 import { getMyInfoRequest, updateMyInfoRequest, deleteMyAccountRequest } from "../../api/userApi.js";
+import { resolveImageUrl } from "../../utils/resolveImageUrl.js";
 
 document.querySelector("#header").innerHTML = header({
   type: "withProfile",
@@ -32,12 +33,18 @@ async function initUserEditPage() {
     const user = response.data;
 
     console.log("내 정보 조회 응답:", response);
+    console.log("프로필 이미지 원본 값:", user.profileImage);
 
     emailText.textContent = user.email;
     nicknameInput.value = user.nickname;
 
     if (user.profileImage) {
-      profilePreview.src = user.profileImage;
+      const resolvedUrl = resolveImageUrl(user.profileImage);
+
+      profilePreview.src = resolvedUrl;
+      profilePreview.onerror = () => {
+        profilePreview.removeAttribute("src");
+      };
     }
   } catch (error) {
     console.error("내 정보 조회 실패:", error);

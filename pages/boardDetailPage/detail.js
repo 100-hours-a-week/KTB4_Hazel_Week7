@@ -3,6 +3,7 @@ import { getBoardDetailRequest, deleteBoardRequest } from "../../api/boardApi.js
 import { getCommentsRequest, createCommentRequest, updateCommentRequest, deleteCommentRequest } from "../../api/commentApi.js";
 import { modal, openModal, closeModal } from "../../components/modal/modal.js";
 import { formatDate } from "../../utils/formatDate.js"
+import { resolveImageUrl } from "../../utils/resolveImageUrl.js";
 
 
 document.querySelector("#header").innerHTML = header({
@@ -75,7 +76,7 @@ function createImageList(images = []) {
           (imageUrl, index) => `
             <img
               class="detail__image"
-              src="${imageUrl}"
+              src="${resolveImageUrl(imageUrl)}"
               alt="게시글 이미지 ${index + 1}"
             />
           `
