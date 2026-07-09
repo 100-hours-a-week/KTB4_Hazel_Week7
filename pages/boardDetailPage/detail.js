@@ -65,7 +65,7 @@ const postDetail = document.querySelector("#postDetail");
 
 function createImageList(images = []) {
   if (!images.length) {
-    return `<div class="detail__image"></div>`;
+    return "";
   }
 
   return `

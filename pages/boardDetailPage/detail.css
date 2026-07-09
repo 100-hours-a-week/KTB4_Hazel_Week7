@@ -71,7 +71,7 @@
   height: 28px;
   padding: 0 12px;
   border: 1.5px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background-color: #fff;
   color: #374151;
   font-size: 13px;
@@ -103,7 +103,7 @@
 .detail__image {
   width: 544px;
   height: 306px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background-color: #e4e9f5;
   object-fit: cover;
 }
@@ -116,6 +116,7 @@
   line-height: 1.6;
   white-space: pre-line;
   width: 544px;
+  min-height: 320px;
 }
 
 .detail__count-container {
@@ -127,7 +128,7 @@
 .detail__count-box {
   width: 116px;
   height: 72px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background-color: #fff;
   box-shadow: 0 4px 16px rgba(2, 23, 48, 0.08);
   display: flex;
@@ -154,7 +155,7 @@
 .comment-form {
   width: 592px;
   margin-bottom: 24px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   background-color: #fff;
   box-shadow: 0 4px 16px rgba(2, 23, 48, 0.06);
   overflow: hidden;
@@ -194,7 +195,7 @@
   width: 120px;
   height: 38px;
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background-color: #021730;
   color: #fff;
   font-size: 14px;
@@ -220,7 +221,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   background-color: #fff;
   box-shadow: 0 4px 16px rgba(2, 23, 48, 0.06);
 }
