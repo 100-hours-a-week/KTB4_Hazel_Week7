@@ -87,13 +87,14 @@ function createImageList(images = []) {
 }
 
 function createCommentItem({
-  id, writer, createdAt, content, isOwner
+  id, writer, writerProfileImage, createdAt, content, isOwner
 }) {
   const formattedCreatedAt = formatDate(createdAt);
+  const resolvedProfileImage = resolveImageUrl(writerProfileImage);
 
   return `
     <div class="comment-item" data-comment-id="${id}">
-      <div class="profile__image"></div>
+      <img class="profile__image" alt="" ${resolvedProfileImage ? `src="${resolvedProfileImage}"` : ""} onerror="this.removeAttribute('src')" />
 
       <div class="comment-item__content">
         <div class="comment-item__meta">
@@ -124,6 +125,7 @@ function renderPostDetail({
   id,
   title,
   writer,
+  writerProfileImage,
   createdAt,
   images,
   text,
@@ -133,6 +135,7 @@ function renderPostDetail({
   isOwner
 }) {
   const formattedCreatedAt = formatDate(createdAt);
+  const resolvedProfileImage = resolveImageUrl(writerProfileImage);
 
   postDetail.innerHTML = `
     <h2 class="detail__title">${title}</h2>
@@ -140,7 +143,7 @@ function renderPostDetail({
     <div class="detail__meta">
       <div class="detail__mate-container">
         <div class="profile-container">
-          <div class="profile__image"></div>
+          <img class="profile__image" alt="" ${resolvedProfileImage ? `src="${resolvedProfileImage}"` : ""} onerror="this.removeAttribute('src')" />
           <div class="profile__name">${writer}</div>
         </div>
 

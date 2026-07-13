@@ -1,5 +1,6 @@
 import { header } from "../../components/header/header.js";
 import { input } from "../../components/input/input.js";
+import { loginRequest } from "../../api/authApi.js";
 
 document.querySelector("#header").innerHTML = header();
 
@@ -38,22 +39,6 @@ const loginForm = document.querySelector("#loginForm");
 function setHelperText(id, message) {
   const helper = document.querySelector(`#${id}Helper`);
   helper.textContent = message ? `* ${message}` : "";
-}
-
-async function loginRequest(data) {
-  const response = await fetch("http://localhost:8080/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error("로그인에 실패했습니다.");
-  }
-
-  return response.json();
 }
 
 loginForm.addEventListener("submit", async (event) => {

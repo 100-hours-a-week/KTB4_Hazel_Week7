@@ -1,6 +1,7 @@
 import { header, bindHeaderEvents } from "../../components/header/header.js";
 import { getBoardsRequest } from "../../api/boardApi.js";
 import { formatDate } from "../../utils/formatDate.js"
+import { resolveImageUrl } from "../../utils/resolveImageUrl.js";
 
 document.querySelector("#header").innerHTML = header({
   type: "withProfile",
@@ -72,9 +73,11 @@ function createPostItem({
   viewCount,
   createdAt,
   writer,
+  writerProfileImage,
 }) {
   const changeFormatDate = formatDate(createdAt);
   const deadline = getMockDeadline(id);
+  const resolvedProfileImage = resolveImageUrl(writerProfileImage);
 
   return `
     <article class="item" data-post-id="${id}">
@@ -107,7 +110,7 @@ function createPostItem({
       <div class="line"></div>
 
       <div class="profile-container">
-        <div class="profile__image"></div>
+        <img class="profile__image" alt="" ${resolvedProfileImage ? `src="${resolvedProfileImage}"` : ""} onerror="this.removeAttribute('src')" />
         <div class="profile__name">${writer}</div>
       </div>
     </article>

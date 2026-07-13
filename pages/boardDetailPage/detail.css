@@ -42,10 +42,12 @@
 }
 
 .profile__image {
+  display: block;
   width: 36px;
   height: 36px;
   background-color: #e4e9f5;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .profile__name {
